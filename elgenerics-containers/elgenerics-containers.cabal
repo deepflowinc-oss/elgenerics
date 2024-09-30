@@ -1,0 +1,155 @@
+cabal-version: 3.4
+name: elgenerics-containers
+version: 0.1.0.0
+category: Data, Generic Programming
+synopsis: Higher-kinded extensible records and contaienrs with type-checker plugins
+description: A battle-tested library providing higher-kinded extensible records, heterogeneous lists, and unions. Supercharged with type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc/elgenerics#readme>
+author: DeepFlow, Inc.
+maintainer: DeepFlow, Inc.
+copyright: (c) 2020-present, DeepFlow, Inc.
+license: BSD-3-Clause
+license-file: LICENSE
+build-type: Simple
+extra-doc-files:
+  ChangeLog.md
+  README.md
+
+data-dir: data
+
+source-repository head
+  type: git
+  location: https://github.com/deepflowinc/elgenerics
+  subdir: elgenerics-containers
+
+common defaults
+  build-depends: base >=4.7 && <5
+  ghc-options:
+    -Wall
+    -Wcompat
+    -Widentities
+    -Wincomplete-record-updates
+    -Wincomplete-uni-patterns
+    -Wmissing-export-lists
+    -Wmissing-home-modules
+    -Wpartial-fields
+    -Wno-redundant-constraints
+    -Wunused-packages
+
+  default-language: GHC2021
+  other-modules: Paths_elgenerics_containers
+  autogen-modules: Paths_elgenerics_containers
+
+library
+  import: defaults
+  -- cabal-gild: discover src
+  exposed-modules:
+    Data.HList
+    Data.HList.HigherKinded
+    Data.HList.HigherKinded.Builder
+    Data.HList.Internal
+    Data.Product.Class
+    Data.Record
+    Data.Record.Builder.HigherKinded
+    Data.Record.Builder.HigherKinded.BottomUp
+    Data.Record.HigherKinded
+    Data.Record.HigherKinded.Internal
+    Data.Record.HigherKinded.OnEntry
+    Data.Record.HigherKinded.Unsafe
+    Data.Record.Plugin
+    Data.Sum.Class
+    Data.TypeLevel.BinTree
+    Data.TypeLevel.Path
+    Data.Union
+    Data.Union.HigherKinded
+    Data.Union.Internal
+
+  hs-source-dirs: src
+  build-depends:
+    aeson,
+    base >=4.7 && <5,
+    bifunctors,
+    constraints,
+    containers,
+    deepseq,
+    distributive,
+    dlist,
+    elgenerics-known,
+    foldl,
+    ghc,
+    ghc-typelits-knownnat,
+    lens,
+    primitive,
+    semialign,
+    syb,
+    tagged,
+    these,
+    vector,
+    vector-builder,
+    vector-th-unbox,
+
+test-suite elgenerics-containers-test
+  import: defaults
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  -- cabal-gild: discover test --exclude=test/Spec.hs
+  other-modules:
+    Data.Record.Builder.HigherKinded.BottomUpSpec
+    Data.Record.Builder.HigherKindedSpec
+    Data.Record.Cases
+    Data.Record.Failures
+    Data.Record.HigherKindedSpec
+    Data.Record.PluginSpec
+    Data.RecordSpec
+
+  hs-source-dirs: test
+  ghc-options:
+    -threaded
+    -rtsopts
+    -with-rtsopts=-N
+
+  build-tool-depends: tasty-discover:tasty-discover
+  build-depends:
+    QuickCheck,
+    base >=4.7 && <5,
+    deepseq,
+    dlist,
+    elgenerics-containers,
+    elgenerics-known,
+    ghc-typelits-knownnat,
+    ghc-typelits-presburger,
+    lens,
+    tagged,
+    tasty,
+    tasty-hunit,
+    tasty-quickcheck,
+    text,
+    vector,
+
+test-suite record-test
+  import: defaults
+  type: exitcode-stdio-1.0
+  main-is: record-test.hs
+  hs-source-dirs: app
+  ghc-options:
+    -fplugin
+    Data.Record.Plugin
+
+  build-depends:
+    base,
+    elgenerics-containers,
+    elgenerics-known,
+
+test-suite record-tylist-test
+  import: defaults
+  type: exitcode-stdio-1.0
+  main-is: record-tylist-test.hs
+  hs-source-dirs: app
+  ghc-options:
+    -fplugin
+    Data.TypeLevel.List.Solver
+
+  build-depends:
+    base >=4.7 && <5,
+    elgenerics-containers,
+    elgenerics-known,
+    vector,

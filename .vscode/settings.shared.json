@@ -1,0 +1,15 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "cmd": "bash -c \"find . \\( -name '**/*.cabal' -or -name '**/cabal.project*' \\) -not -path './dist-newstyle/*' | while read -r FILE; do cabal-gild --io \"\\${FILE}\"; done\"",
+        "isAsync": true,
+        "match": "(\\.l?hs)$"
+      }
+    ]
+  },
+  "files.associations": {
+    "**/ci/configs/*.project": "cabal"
+  },
+  "haskell.formattingProvider": "fourmolu"
+}

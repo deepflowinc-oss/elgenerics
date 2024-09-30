@@ -1,0 +1,170 @@
+cabal-version: 3.4
+name: elgenerics-known
+version: 0.1.0.0
+category: Data, Generic Programming
+synopsis: A type-level programming library with type-level maps and type-checker plugins
+description: A battle-tested dependently-typed programming and type-level containers library, supercharged with powerful constraint manipulator and type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc/elgenerics#readme>
+author: DeepFlow, Inc.
+maintainer: DeepFlow, Inc.
+copyright: (c) 2019-present, DeepFlow, Inc.
+license: BSD-3-Clause
+license-file: LICENSE
+build-type: Simple
+extra-doc-files:
+  ChangeLog.md
+  README.md
+
+source-repository head
+  type: git
+  location: https://github.com/deepflowinc/elgenerics
+  subdir: elgenerics-known
+
+common defaults
+  build-depends: base >=4.7 && <5
+  ghc-options:
+    -Wall
+    -Wcompat
+    -Widentities
+    -Wincomplete-record-updates
+    -Wincomplete-uni-patterns
+    -Wmissing-export-lists
+    -Wmissing-home-modules
+    -Wpartial-fields
+    -Wno-redundant-constraints
+    -Wunused-packages
+
+  default-language: GHC2021
+  other-modules: Paths_elgenerics_known
+  autogen-modules: Paths_elgenerics_known
+
+library
+  import: defaults
+  hs-source-dirs: src
+  -- cabal-gild: discover src --exclude=src/Data/TypeLevel/Known/Core.hs --exclude=src/Data/UnionFind/Primitive.hs
+  exposed-modules:
+    Control.Category.Monoid
+    Data.Constraint.Deferrable.Solver
+    Data.Constraint.Operators
+    Data.Constraint.TH
+    Data.Inhabited
+    Data.Membership
+    Data.TypeLevel.Applicative
+    Data.TypeLevel.Bool
+    Data.TypeLevel.Eq
+    Data.TypeLevel.Foldable
+    Data.TypeLevel.Function
+    Data.TypeLevel.Known
+    Data.TypeLevel.Known.TH
+    Data.TypeLevel.List
+    Data.TypeLevel.List.Core
+    Data.TypeLevel.List.Overloaded
+    Data.TypeLevel.List.Properties
+    Data.TypeLevel.List.Solver
+    Data.TypeLevel.List.Solver.Constraint
+    Data.TypeLevel.List.Solver.Free
+    Data.TypeLevel.List.Solver.Generation
+    Data.TypeLevel.List.Solver.Reduce
+    Data.TypeLevel.List.Solver.Syntax
+    Data.TypeLevel.List.Solver.Utils
+    Data.TypeLevel.List.Unsafe
+    Data.TypeLevel.Maybe
+    Data.TypeLevel.Monoid
+    Data.TypeLevel.Nat
+    Data.TypeLevel.Normalise.Plugin
+    Data.TypeLevel.Ord
+    Data.TypeLevel.Ord.Internal
+    Data.TypeLevel.OrdMap
+    Data.TypeLevel.OrdMap.Internal
+    Data.TypeLevel.Tuple
+    Data.TypeLevel.Typeable
+    GHC.TcPluginM.Orphans
+
+  other-modules:
+    Data.TypeLevel.Known.Core
+    Data.UnionFind.Primitive
+
+  build-depends:
+    constraints,
+    containers,
+    deepseq,
+    dlist,
+    foldl,
+    ghc,
+    ghc-tcplugins-extra,
+    ghc-typelits-knownnat,
+    lens,
+    linear,
+    primitive,
+    safe-exceptions,
+    syb,
+    template-haskell,
+    th-abstraction,
+    th-desugar,
+    th-utilities,
+    these,
+    transformers,
+    union-find,
+    vector,
+
+executable normalise-test
+  import: defaults
+  main-is: normalise-test.hs
+  other-modules: NormDefs
+  hs-source-dirs: app
+  build-depends:
+    base,
+    elgenerics-known,
+
+executable simple-plugin-test
+  import: defaults
+  main-is: simple-plugin-test.hs
+  other-modules: NormDefs
+  hs-source-dirs: app
+  build-depends:
+    base,
+    elgenerics-known,
+
+test-suite elgenerics-known-test
+  import: defaults
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: test
+  -- cabal-gild: discover test --exclude=test/Spec.hs
+  other-modules:
+    Data.Constraint.Deferrable.SolverSpec
+    Data.Constraint.Deferrable.SolverSpec.Cases
+    Data.Constraint.Deferrable.SolverSpec.Undeferreds
+    Data.TypeLevel.KnownSpec
+    Data.TypeLevel.ListSpec
+    Data.TypeLevel.ListSpec.Cases
+    Data.TypeLevel.ListSpec.Undeferred
+    Data.TypeLevel.Nat.Definitions
+    Data.TypeLevel.NatSpec
+    Data.TypeLevel.OrdMapSpec
+    Data.TypeLevel.OrdMapSpec.Cases
+    Data.TypeLevel.OrdMapSpec.Failures
+    Helpers
+
+  ghc-options:
+    -threaded
+    -rtsopts
+    -with-rtsopts=-N
+
+  build-tool-depends:
+    tasty-discover:tasty-discover
+
+  build-depends:
+    QuickCheck,
+    base >=4.7 && <5,
+    constraints,
+    containers,
+    deepseq,
+    dlist,
+    elgenerics-known,
+    inspection-testing,
+    tasty,
+    tasty-expected-failure,
+    tasty-hunit,
+    tasty-inspection-testing,
+    tasty-quickcheck,
+    template-haskell,
