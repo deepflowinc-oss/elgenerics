@@ -3,7 +3,7 @@ name: elgenerics-known
 version: 0.1.0.0
 category: Data, Generic Programming
 synopsis: A type-level programming library with type-level maps and type-checker plugins
-description: A battle-tested dependently-typed programming and type-level containers library, supercharged with powerful constraint manipulator and type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc/elgenerics#readme>
+description: A battle-tested dependently-typed programming and type-level containers library, supercharged with powerful constraint manipulator and type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc-oss/elgenerics#readme>
 author: DeepFlow, Inc.
 maintainer: DeepFlow, Inc.
 copyright: (c) 2019-present, DeepFlow, Inc.
@@ -16,7 +16,7 @@ extra-doc-files:
 
 source-repository head
   type: git
-  location: https://github.com/deepflowinc/elgenerics
+  location: https://github.com/deepflowinc-oss/elgenerics
   subdir: elgenerics-known
 
 common defaults

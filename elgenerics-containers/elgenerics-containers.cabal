@@ -3,7 +3,7 @@ name: elgenerics-containers
 version: 0.1.0.0
 category: Data, Generic Programming
 synopsis: Higher-kinded extensible records and contaienrs with type-checker plugins
-description: A battle-tested library providing higher-kinded extensible records, heterogeneous lists, and unions. Supercharged with type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc/elgenerics#readme>
+description: A battle-tested library providing higher-kinded extensible records, heterogeneous lists, and unions. Supercharged with type-checker plugins. Please see the README on GitHub at <https://github.com/deepflowinc-oss/elgenerics#readme>
 author: DeepFlow, Inc.
 maintainer: DeepFlow, Inc.
 copyright: (c) 2020-present, DeepFlow, Inc.
@@ -18,7 +18,7 @@ data-dir: data
 
 source-repository head
   type: git
-  location: https://github.com/deepflowinc/elgenerics
+  location: https://github.com/deepflowinc-oss/elgenerics
   subdir: elgenerics-containers
 
 common defaults

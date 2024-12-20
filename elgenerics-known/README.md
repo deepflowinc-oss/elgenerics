@@ -1,7 +1,7 @@
 # `elgenerics-known`
 
 A battle-tested dependently-typed programming library in Haskell with various type-level containers and plugins.
-See [monorepo's README](https://github.com/deepflowinc/elgenerics/README.md) for more details.
+See [monorepo's README](https://github.com/deepflowinc-oss/elgenerics/README.md) for more details.
 
 ## Contributing
 
@@ -9,7 +9,7 @@ Please feel free to open an issue, but also please search for existing issues to
 
 See [CONTRIBUTING.md][CONTRIBUTING] for more details.
 
-[CONTRIBUTING]: https://github.com/deepflowinc/elgenerics/blob/master/CONTRIBUTING.md
+[CONTRIBUTING]: https://github.com/deepflowinc-oss/elgenerics/blob/master/CONTRIBUTING.md
 
 ## Copyright
 
